@@ -14,19 +14,27 @@ class App extends Component {
         showPersons: false
     };
 
-    switchNameHandler = ( newName ) => {
-        this.setState({
-            persons: [
-                { id: "Person1", name: newName, age: 28},
-                { id: "Person2", name: "Manuel", age: 29},
-                { id: "Person3", name: "Stephanie", age: 26}
-            ]
+    changeNameHandler = ( event, id ) => {
+        const personIndex = this.state.persons.findIndex(p => {
+           return p.id === id
         });
+
+        const person = {
+            ...this.state.persons[personIndex]
+        };
+        person.name = event.target.value;
+
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+
+        this.setState({persons: persons})
+
+
     };
 
     deletePersonHandler = (personIndex) => {
         // const persons = this.state.persons.slice();
-        const persons = [...this.state.persons]
+        const persons = [...this.state.persons];
         persons.splice(personIndex, 1);
         this.setState({persons: persons});
 
@@ -62,6 +70,7 @@ class App extends Component {
                                         name={person.name}
                                         age={person.age}
                                         key={person.id}
+                                        changed={( event ) => this.changeNameHandler(event, person.id)}
                                     />)
                         })}
                 </div>);
@@ -73,11 +82,6 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <button
-                    style={style}
-                    onClick={() => this.switchNameHandler('Test!')}
-                >Switch name
-                </button>
                 <button
                     style={style}
                     onClick={() => this.toggleShowPersonsHandler()}
