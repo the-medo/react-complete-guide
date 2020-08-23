@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, {StyleRoot} from 'radium';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person'
@@ -50,11 +51,16 @@ class App extends Component {
     render()
     {
         const style = {
-            backgroundColor: 'white',
+            backgroundColor: 'red',
+            color: 'white',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            ':hover': {
+                backgroundColor: 'salmon',
+                color: 'black'
+            }
         }
 
         let persons = null;
@@ -74,24 +80,29 @@ class App extends Component {
                                     />)
                         })}
                 </div>);
+
+            style.backgroundColor = 'green';
+            style[':hover'].backgroundColor = 'lightgreen';
         }
 
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <button
-                    style={style}
-                    onClick={() => this.toggleShowPersonsHandler()}
-                >Toggle persons
-                </button>
-                {persons}
-            </div>
+            <StyleRoot>
+                <div className="App">
+                    <header className="App-header">
+                        <img src={logo} className="App-logo" alt="logo"/>
+                        <h1 className="App-title">Welcome to React</h1>
+                    </header>
+                    <button
+                        style={style}
+                        onClick={() => this.toggleShowPersonsHandler()}
+                    >Toggle persons
+                    </button>
+                    {persons}
+                </div>
+            </StyleRoot>
         );
     }
 
 }
 
-export default App;
+export default Radium(App);
