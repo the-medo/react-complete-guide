@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person'
 
-const StyledButton = styled.button`
-    background-color: ${props => props.alt ? 'green' : 'red'};
-    color: white;
-    border: 1px solid blue;
-    padding: 8px;
-    cursor: pointer;
-    
-    &:hover{
-        background-color: ${props => props.alt ? 'lightgreen' : 'salmon'};
-        color: black;
-    }
-`;
 
 class App extends Component {
     state = {
@@ -90,11 +77,10 @@ class App extends Component {
                         <img src={logo} className="App-logo" alt="logo"/>
                         <h1 className="App-title">Welcome to React</h1>
                     </header>
-                    <StyledButton
-                        alt={this.state.showPersons}
+                    <button
                         onClick={() => this.toggleShowPersonsHandler()}
                     >Toggle persons
-                    </StyledButton>
+                    </button>
                     {persons}
                 </div>
         );
