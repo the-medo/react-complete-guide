@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import classes from './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
     state = {
@@ -52,37 +51,18 @@ class App extends Component {
     {
 
         let persons = null;
-        const btnClasses = [];
 
         if (this.state.showPersons) {
             persons = (
                 <div>
-                    {this.state.persons.map((person, index) =>   {
-                                return (
-                                    <ErrorBoundary key={person.id}><Person
-                                        click={() => this.deletePersonHandler(index)}
-                                        index={index}
-                                        name={person.name}
-                                        age={person.age}
-                                        changed={( event ) => this.changeNameHandler(event, person.id)}
-                                    /></ErrorBoundary>)
-                        })}
-                </div>);
-
-            btnClasses.push(classes.Red);
+                    <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.changeNameHandler} />
+                </div>
+            );
         }
 
         return (
                 <div className={classes.App}>
-                    <header className={classes.AppHeader}>
-                        <img src={logo} className={classes.AppLogo} alt="logo"/>
-                        <h1 className={classes.AppTitle}>Welcome to React</h1>
-                    </header>
-                    <button
-                        className={btnClasses.join(' ')}
-                        onClick={() => this.toggleShowPersonsHandler()}
-                    >Toggle persons
-                    </button>
+                    <Cockpit persons={this.state.persons} showPersons={this.state.showPersons} clicked={this.toggleShowPersonsHandler} />
                     {persons}
                 </div>
         );
