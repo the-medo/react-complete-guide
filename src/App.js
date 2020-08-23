@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person'
 
 
@@ -52,6 +52,7 @@ class App extends Component {
     {
 
         let persons = null;
+        const btnClasses = [];
 
         if (this.state.showPersons) {
             persons = (
@@ -69,15 +70,17 @@ class App extends Component {
                         })}
                 </div>);
 
+            btnClasses.push(classes.Red);
         }
 
         return (
-                <div className="App">
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <h1 className="App-title">Welcome to React</h1>
+                <div className={classes.App}>
+                    <header className={classes.AppHeader}>
+                        <img src={logo} className={classes.AppLogo} alt="logo"/>
+                        <h1 className={classes.AppTitle}>Welcome to React</h1>
                     </header>
                     <button
+                        className={btnClasses.join(' ')}
                         onClick={() => this.toggleShowPersonsHandler()}
                     >Toggle persons
                     </button>
