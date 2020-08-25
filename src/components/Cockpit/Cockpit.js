@@ -37,6 +37,11 @@ const Cockpit = (props) => {
                 onClick={() => props.clicked()}
             >Toggle persons
             </button>
+            <button
+                onClick={props.login}
+            >
+                Log in
+            </button>
         </div>
     );
 }
