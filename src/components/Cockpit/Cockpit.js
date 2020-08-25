@@ -6,7 +6,7 @@ const Cockpit = (props) => {
 
     useEffect(() => {
         console.log("[Cockpit.js] useEffect");
-        setTimeout(() => {alert('text');}, 1000);
+        //setTimeout(() => {alert('text');}, 1000);
     });
 
     const btnClasses = [];
