@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classes from "./Cockpit.css";
 import logo from "../../logo.svg";
+import AuthContext from "../../context/auth-context"
 
 const Cockpit = (props) => {
     const toggleButtonRef = useRef(null);
@@ -37,11 +38,14 @@ const Cockpit = (props) => {
                 onClick={() => props.clicked()}
             >Toggle persons
             </button>
-            <button
-                onClick={props.login}
-            >
-                Log in
-            </button>
+            <AuthContext.Consumer>
+                {(context) => { return (
+                    <button onClick={context.login} className={context.authenticated ? '' : classes.Red}>
+                        {context.authenticated ? 'Log out' : 'Log in'}
+                    </button>
+                    )}
+                }
+            </AuthContext.Consumer>
         </div>
     );
 }
