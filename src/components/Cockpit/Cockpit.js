@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from "./Cockpit.css";
 import logo from "../../logo.svg";
 
 const Cockpit = (props) => {
+
+    useEffect(() => {
+        console.log("[Cockpit.js] useEffect");
+        setTimeout(() => {alert('text');}, 1000);
+    });
 
     const btnClasses = [];
     const assignedClasses = [];
