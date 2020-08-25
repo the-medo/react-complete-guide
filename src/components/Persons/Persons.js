@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Person from './Person/Person';
 
 class Persons extends Component {
@@ -15,6 +16,12 @@ class Persons extends Component {
                 />);
         });
     }
+}
+
+Persons.propTypes = {
+    persons: PropTypes.array,
+    clicked: PropTypes.func,
+    changed: PropTypes.func
 }
 
 export default Persons;

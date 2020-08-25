@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import classes from "./Cockpit.css";
 import logo from "../../logo.svg";
 
 const Cockpit = (props) => {
+    const toggleButtonRef = useRef(null);
 
     useEffect(() => {
         console.log("[Cockpit.js] useEffect");
-        //setTimeout(() => {alert('text');}, 1000);
-    });
+        toggleButtonRef.current.click();
+    }, []);
 
     const btnClasses = [];
     const assignedClasses = [];
@@ -30,12 +32,18 @@ const Cockpit = (props) => {
                 <p className={assignedClasses.join(' ')}>Welcome to React</p>
             </header>
             <button
+                ref={toggleButtonRef}
                 className={btnClasses.join(' ')}
                 onClick={() => props.clicked()}
             >Toggle persons
             </button>
         </div>
     );
+}
+
+Cockpit.propTypes = {
+    persons: PropTypes.array,
+    showPersons: PropTypes.bool
 }
 
 export default Cockpit;
